@@ -1,8 +1,8 @@
 
 var options = exports.options = require('./options');
 
-exports.parser = require('./parsers/parser');
-exports.refiner = require('./refiners/refiner');
+exports.parser = require('./parsers');
+exports.refiner = require('./refiners');
 
 exports.Parser = exports.parser.Parser;
 exports.Refiner = exports.refiner.Refiner;
@@ -24,7 +24,7 @@ Chrono.prototype.parse = function(text, refDate, opt) {
     refDate = refDate || new Date();
     opt = opt || {};
     opt.forwardDate = opt.forwardDate || opt.forwardDate;
-    
+
     var allResults = [];
 
     this.parsers.forEach(function (parser) {
@@ -39,7 +39,7 @@ Chrono.prototype.parse = function(text, refDate, opt) {
     this.refiners.forEach(function (refiner) {
         allResults = refiner.refine(text, allResults, opt);
     });
-    
+
     return allResults;
 };
 
@@ -74,7 +74,7 @@ exports.es = new Chrono( options.mergeOptions([
 exports.fr = new Chrono( options.mergeOptions([
     options.fr.casual, options.en, options.commonPostProcessing]));
 
-exports.ja = new Chrono( options.mergeOptions([ 
+exports.ja = new Chrono( options.mergeOptions([
     options.ja.casual, options.en, options.commonPostProcessing]));
 
 
@@ -85,7 +85,3 @@ exports.parse = function () {
 exports.parseDate = function () {
     return exports.casual.parseDate.apply(exports.casual, arguments);
 };
-
-
-
-

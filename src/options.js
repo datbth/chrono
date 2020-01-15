@@ -1,5 +1,5 @@
-var parser = require('./parsers/parser');
-var refiner = require('./refiners/refiner');
+var parser = require('./parsers');
+var refiner = require('./refiners');
 
 
 exports.mergeOptions = function(options) {
@@ -74,7 +74,7 @@ exports.casualOption = function () {
     return exports.mergeOptions([
         exports.en.casual,
         // Some German abbriviate overlap with common English
-        exports.de({ strict: true }), 
+        exports.de({ strict: true }),
         exports.pt.casual,
         exports.es.casual,
         exports.fr.casual,
@@ -213,8 +213,8 @@ exports.pt = function(config) {
 };
 
 exports.pt.casual = function() {
-    var option = exports.pt({ 
-        strict: false 
+    var option = exports.pt({
+        strict: false
     });
 
     option.parsers.unshift(new parser.PTCasualDateParser());
@@ -242,8 +242,8 @@ exports.es = function(config) {
 };
 
 exports.es.casual = function() {
-    var option = exports.es({ 
-        strict: false 
+    var option = exports.es({
+        strict: false
     });
 
     option.parsers.unshift(new parser.ESCasualDateParser());
