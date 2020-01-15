@@ -47,7 +47,7 @@ function ParsedComponents (components, ref){
     this.impliedValues = {};
 
     if (components) {
-        for (key in components) {
+        for (var key in components) {
             this.knownValues[key] = components[key];
         }
     }
@@ -58,7 +58,7 @@ function ParsedComponents (components, ref){
         this.imply('month', ref.month() + 1)
         this.imply('year', ref.year())
     }
-    
+
 
     this.imply('hour', 12);
     this.imply('minute', 0);
@@ -135,7 +135,7 @@ ParsedComponents.prototype.dayjs = function() {
 
     // Javascript Date Object return minus timezone offset
     var currentTimezoneOffset = result.utcOffset();
-    var targetTimezoneOffset = this.get('timezoneOffset') !== undefined ? 
+    var targetTimezoneOffset = this.get('timezoneOffset') !== undefined ?
         this.get('timezoneOffset') : currentTimezoneOffset;
 
     var adjustTimezoneOffset = targetTimezoneOffset - currentTimezoneOffset;
